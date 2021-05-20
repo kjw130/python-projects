@@ -1,4 +1,5 @@
 def get_tax_year():
+    
     print("What tax year are you calculating for? [2019/2020]")
     
     while True:
@@ -11,15 +12,18 @@ def get_tax_year():
 
 
 def input_for_casual_or_contracted():
+    
     print("are you casual?")
     yes_or_no = y_or_n()
+    
     return yes_or_no
 
 
 def misc_number():
+    
     while True:
         try:
-            number = float(input("> "))
+            number = float(input("> "))     
             return number
 
         except ValueError:
@@ -27,12 +31,15 @@ def misc_number():
 
 
 def get_payrate():
+    
     print("What is your payrate?")
     payrate = misc_number()
+    
     return payrate
 
 
 def decide_payrate(payrate, yes_or_no):
+    
     if yes_or_no == "y":
         rate_for_calculations = payrate / 1.25
         saturday_rate = rate_for_calculations * 0.50 + rate_for_calculations
@@ -49,35 +56,46 @@ def decide_payrate(payrate, yes_or_no):
 
 
 def calc_pay(hours, payrate):
+    
     pay = hours*payrate
+    
     return pay
 
 
 def get_weekly_hours_input():
+    
     print("How many hours are you working during the week?")
     weekly_hours = misc_number()
+    
     return weekly_hours
 
 
 def get_saturday_hours_input():
+    
     print("How many hours are you working on saturday?")
     saturday_hours = misc_number()
+    
     return saturday_hours
 
 
 def get_sunday_hours_input():
+    
     print("How many hours are you working on sunday?")
     sunday_hours = misc_number()
+    
     return sunday_hours
 
 
 def publicHoliday():
+    
     print("Are you working on a public holiday this week?")
     yes_or_no = y_or_n()
+    
     return yes_or_no
     
 
 def get_public_holiday_hours():
+    
     yes_or_no = publicHoliday()
 
     if yes_or_no == "y":
@@ -91,6 +109,7 @@ def get_public_holiday_hours():
 
 
 def calculate_over_time_pay_rates(yes_or_no, rate_for_calculations):
+    
     if yes_or_no == "y":
         calculate_overtime_rate = rate_for_calculations * 0.50 + rate_for_calculations * 0.25 + rate_for_calculations
         over_41_hours = ((rate_for_calculations * 0.50 + rate_for_calculations * 0.25 + rate_for_calculations) * 3)
@@ -142,6 +161,7 @@ def calculate_overtime(payrate, total_hours, calculate_overtime_rate, over_41_ho
 def taxRates(tax_year):
     # Set tax is the tax for when you are in a higher bracket, if you are in bracket 3 in 2020,
     # You will always pay atleast $5,092 in tax from the previous bracket
+    
     if tax_year == "2019":
         brackets = [18200, 37000, 90000, 180000]
         rates = [0.19, 0.325, 0.37, 0.45]
@@ -203,6 +223,7 @@ def low_tax_off_set(year_pay, tax, maximum_off_set, off_set_rate):
 
 
 def middle_income_offset(year_pay, tax, maximum_off_set):
+    
     if year_pay <= 18200:
         middle_off_set = 0
 
@@ -272,17 +293,6 @@ def pay_after_tax(year_pay, tax, medicare_levy, total_off_set):
     return pay_after_taxation, weekly_pay_after_tax
 
 
-def results(tax, total_off_set, year_pay, medicare_levy, pay):
-    
-    pay_after_taxation, weekly_pay_after_tax = pay_after_tax(year_pay, tax, medicare_levy, total_off_set)
-    
-    print(f"You will earn ${pay: .2f} this week, before tax.")
-    print(f"You will earn ${weekly_pay_after_tax: .2f} this week, after tax.")
-    print(f"On this payrate, you will earn ${year_pay: .2f} a year, before tax.")
-    print(f"On this payrate you will earn ${pay_after_taxation: .2f} a year, after tax.")
-    print(f"This calculation includes a medicare levy of ${medicare_levy: .2f}, and a tax offset of ${total_off_set: .2f}")
-    
-
 def y_or_n():
     while True:
         yes_or_no = str(input("[y/n] >"))
@@ -292,10 +302,6 @@ def y_or_n():
             return yes_or_no
         else:
             print("Please enter y or n.")
-
-
-def call_exit():
-    exit(0)
 
 
 def initial_questions():
@@ -355,11 +361,26 @@ def taxes():
 
     results(tax, total_off_set, year_pay, medicare_levy, pay)
 
+    
+ def results(tax, total_off_set, year_pay, medicare_levy, pay):
+    
+    pay_after_taxation, weekly_pay_after_tax = pay_after_tax(year_pay, tax, medicare_levy, total_off_set)
+    
+    print(f"You will earn ${pay: .2f} this week, before tax.")
+    print(f"You will earn ${weekly_pay_after_tax: .2f} this week, after tax.")
+    print(f"On this payrate, you will earn ${year_pay: .2f} a year, before tax.")
+    print(f"On this payrate you will earn ${pay_after_taxation: .2f} a year, after tax.")
+    print(f"This calculation includes a medicare levy of ${medicare_levy: .2f}, and a tax offset of ${total_off_set: .2f}")   
+    
 
 def calculate_everything():
     taxes()
 
+    
+def call_exit():
+    exit(0)   
 
+    
 def mainFunc():
     while True:
 
