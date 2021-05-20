@@ -253,6 +253,7 @@ def middle_income_offset(year_pay, tax, maximum_off_set):
 
 
 def offSetMaximum(tax_year):
+    
     if tax_year == "2019":
         maximum_off_set = 445
         off_set_rate = 0.0165
@@ -277,6 +278,7 @@ def calculate_total_off_set(tax, year_pay, tax_year):
 
 
 def calculate_medicare_levy(year_pay):
+    
     if year_pay >= 28501:
         medicare_levy = year_pay * 0.02
     elif year_pay <= 28500:
@@ -294,6 +296,7 @@ def pay_after_tax(year_pay, tax, medicare_levy, total_off_set):
 
 
 def y_or_n():
+    
     while True:
         yes_or_no = str(input("[y/n] >"))
         yes_or_no = yes_or_no.lower()
@@ -382,6 +385,7 @@ def call_exit():
 
     
 def mainFunc():
+    
     while True:
 
         calculate_everything()
