@@ -22,6 +22,7 @@ class Game:
 
     def y_n(self):
         while True:
+            
             yes_or_no = input("[Y/N] > ")
             yes_or_no = yes_or_no.lower()
 
@@ -46,13 +47,13 @@ class Game:
 
         if restart_or_quit == "y":
             Game()
+            
         elif restart_or_quit == "n":
             exit(0)
 
 
     def main(self):
         wrong_guesses = 0
-
         while True:
 
             x, y, userchoice = self.user_choice()
@@ -81,7 +82,6 @@ class Game:
             board_as_a_single_list_for_checking_win = []
             
             for x in self.hidden_board:
-
                 board_as_a_single_list_for_checking_win.extend(x)
 
                 if 0 not in board_as_a_single_list_for_checking_win:
@@ -102,7 +102,6 @@ class Board:
 
 
     def outputboard(self,board, start):
-
         if start == 0:
             squares = self.side*self.side
             empties = squares * 3//4 
